@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 Auction Platform</h1>
+            <nav id="nav">
+                <button id="loginBtn" class="btn">Login</button>
+                <button id="registerBtn" class="btn">Register</button>
+                <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+                <span id="username" style="display: none; margin-left: 10px;"></span>
+            </nav>
+        </header>
+
+        <!-- Auth Forms -->
+        <div id="authSection" style="display: none;">
+            <div id="loginForm" class="form-container">
+                <h2>Login</h2>
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()" class="btn btn-primary">Login</button>
+                <button onclick="hideAuth()" class="btn">Cancel</button>
+            </div>
+
+            <div id="registerForm" class="form-container" style="display: none;">
+                <h2>Register</h2>
+                <input type="text" id="regUsername" placeholder="Username" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Password" required>
+                <button onclick="register()" class="btn btn-primary">Register</button>
+                <button onclick="hideAuth()" class="btn">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Create Auction Form -->
+        <div id="createAuctionSection" style="display: none;">
+            <div class="form-container">
+                <h2>Create New Auction</h2>
+                <input type="text" id="auctionTitle" placeholder="Title" required>
+                <textarea id="auctionDescription" placeholder="Description" rows="3" required></textarea>
+                <input type="number" id="auctionPrice" placeholder="Starting Price" step="0.01" required>
+                <input type="datetime-local" id="auctionEndTime" required>
+                <button onclick="createAuction()" class="btn btn-primary">Create Auction</button>
+                <button onclick="hideCreateAuction()" class="btn">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <div class="controls">
+                <button id="createAuctionBtn" class="btn btn-success" style="display: none;">+ Create Auction</button>
+                <button onclick="loadAuctions('open')" class="btn">Open Auctions</button>
+                <button onclick="loadAuctions('closed')" class="btn">Closed Auctions</button>
+            </div>
+
+            <div id="message" class="message"></div>
+            
+            <div id="auctionsList" class="auctions-grid">
+                <p class="loading">Loading auctions...</p>
+            </div>
+        </main>
+
+        <!-- Auction Detail Modal -->
+        <div id="auctionModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="auctionDetail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
